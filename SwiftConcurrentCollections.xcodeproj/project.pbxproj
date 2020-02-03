@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2F897EF723E8683000B522AF /* SwiftConcurrentCollections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F897EED23E8683000B522AF /* SwiftConcurrentCollections.framework */; };
-		2F897EFC23E8683000B522AF /* SwiftConcurrentCollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897EFB23E8683000B522AF /* SwiftConcurrentCollectionsTests.swift */; };
+		2F897EFC23E8683000B522AF /* ConcurrentDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897EFB23E8683000B522AF /* ConcurrentDictionaryTests.swift */; };
 		2F897EFE23E8683000B522AF /* SwiftConcurrentCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F897F0823E8692800B522AF /* ConcurrentDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */; };
+		2F897F0C23E86A8900B522AF /* ConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */; };
+		2F897F0E23E8757400B522AF /* ConcurrentArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +30,11 @@
 		2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftConcurrentCollections.h; sourceTree = "<group>"; };
 		2F897EF123E8683000B522AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F897EF623E8683000B522AF /* SwiftConcurrentCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftConcurrentCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F897EFB23E8683000B522AF /* SwiftConcurrentCollectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftConcurrentCollectionsTests.swift; sourceTree = "<group>"; };
+		2F897EFB23E8683000B522AF /* ConcurrentDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentDictionaryTests.swift; sourceTree = "<group>"; };
 		2F897EFD23E8683000B522AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentDictionary.swift; sourceTree = "<group>"; };
+		2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArray.swift; sourceTree = "<group>"; };
+		2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArrayTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,8 @@
 		2F897EEF23E8683000B522AF /* SwiftConcurrentCollections */ = {
 			isa = PBXGroup;
 			children = (
+				2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */,
+				2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */,
 				2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */,
 				2F897EF123E8683000B522AF /* Info.plist */,
 			);
@@ -80,7 +88,8 @@
 		2F897EFA23E8683000B522AF /* SwiftConcurrentCollectionsTests */ = {
 			isa = PBXGroup;
 			children = (
-				2F897EFB23E8683000B522AF /* SwiftConcurrentCollectionsTests.swift */,
+				2F897EFB23E8683000B522AF /* ConcurrentDictionaryTests.swift */,
+				2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */,
 				2F897EFD23E8683000B522AF /* Info.plist */,
 			);
 			path = SwiftConcurrentCollectionsTests;
@@ -148,6 +157,7 @@
 				TargetAttributes = {
 					2F897EEC23E8683000B522AF = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					2F897EF523E8683000B522AF = {
 						CreatedOnToolsVersion = 10.2;
@@ -194,6 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F897F0C23E86A8900B522AF /* ConcurrentArray.swift in Sources */,
+				2F897F0823E8692800B522AF /* ConcurrentDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F897EFC23E8683000B522AF /* SwiftConcurrentCollectionsTests.swift in Sources */,
+				2F897F0E23E8757400B522AF /* ConcurrentArrayTests.swift in Sources */,
+				2F897EFC23E8683000B522AF /* ConcurrentDictionaryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 		2F897F0223E8683000B522AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Prokop.SwiftConcurrentCollections;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,6 +381,7 @@
 		2F897F0323E8683000B522AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +407,7 @@
 		2F897F0523E8683000B522AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97H7M775CZ;
 				INFOPLIST_FILE = SwiftConcurrentCollectionsTests/Info.plist;
@@ -409,6 +426,7 @@
 		2F897F0623E8683000B522AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97H7M775CZ;
 				INFOPLIST_FILE = SwiftConcurrentCollectionsTests/Info.plist;
