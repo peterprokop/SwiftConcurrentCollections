@@ -35,6 +35,7 @@
 		2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentDictionary.swift; sourceTree = "<group>"; };
 		2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArray.swift; sourceTree = "<group>"; };
 		2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArrayTests.swift; sourceTree = "<group>"; };
+		2F897F0F23E87A1800B522AF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		2F897EE323E8683000B522AF = {
 			isa = PBXGroup;
 			children = (
+				2F897F0F23E87A1800B522AF /* README.md */,
 				2F897EEF23E8683000B522AF /* SwiftConcurrentCollections */,
 				2F897EFA23E8683000B522AF /* SwiftConcurrentCollectionsTests */,
 				2F897EEE23E8683000B522AF /* Products */,
