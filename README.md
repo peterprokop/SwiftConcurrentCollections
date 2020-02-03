@@ -12,7 +12,7 @@ Swift Concurrent Collections is a library providing concurrent (thread-safe) imp
 In your Xcode project folder do:
 - `touch Cartfile`
 - `nano Cartfile`
-- Put `github "peterprokop/SwiftConcurrentCollections" == 1.0.0` into Cartfile
+- Put `github "peterprokop/SwiftConcurrentCollections" == 1.1.0` into Cartfile
 - Save it: `ctrl-x`, `y`, `enter`
 - Run `carthage update`
 - Add `SwiftConcurrentCollections` to your carthage [copy-frameworks phase](https://github.com/Carthage/Carthage#quick-start)
