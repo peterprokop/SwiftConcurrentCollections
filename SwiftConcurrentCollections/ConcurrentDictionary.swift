@@ -5,22 +5,22 @@ import Foundation
 public final class ConcurrentDictionary<Key: Hashable, Value> {
 
     private var container: [Key: Value] = [:]
-    private let containerAccessQueue = DispatchQueue(
-        label: "ConcurrentDictionary.containerAccessQueue",
-        qos: .default,
-        attributes: .concurrent
-    )
+    private let rwlock = RWLock()
 
     public var keys: [Key] {
-        return containerAccessQueue.sync {
-            return Array(self.container.keys)
-        }
+        let result: [Key]
+        rwlock.readLock()
+        result = Array(container.keys)
+        rwlock.unlock()
+        return result
     }
 
     public var values: [Value] {
-        return containerAccessQueue.sync {
-            return Array(self.container.values)
-        }
+        let result: [Value]
+        rwlock.readLock()
+        result = Array(container.values)
+        rwlock.unlock()
+        return result
     }
 
     public init() {}
@@ -31,28 +31,42 @@ public final class ConcurrentDictionary<Key: Hashable, Value> {
     ///   - value: The value to set for key
     ///   - key: The key to set value for
     public func set(value: Value, forKey key: Key) {
-        containerAccessQueue.sync(flags: .barrier) {
-            self._set(value: value, forKey: key)
-        }
+        rwlock.writeLock()
+        _set(value: value, forKey: key)
+        rwlock.unlock()
     }
 
     @discardableResult
     public func remove(_ key: Key) -> Value? {
-        return containerAccessQueue.sync(flags: .barrier) {
-            self._remove(key)
-        }
+        let result: Value?
+        rwlock.writeLock()
+        result = _remove(key)
+        rwlock.unlock()
+        return result
     }
 
     public func contains(_ key: Key) -> Bool {
-        return containerAccessQueue.sync {
-            return self.container.index(forKey: key) != nil
-        }
+        let result: Bool
+        rwlock.readLock()
+        result = container.index(forKey: key) != nil
+        rwlock.unlock()
+        return result
     }
 
     public func value(forKey key: Key) -> Value? {
-        return containerAccessQueue.sync {
-            return self.container[key]
+        let result: Value?
+        rwlock.readLock()
+        result = container[key]
+        rwlock.unlock()
+        return result
+    }
+
+    public func mutateValue(forKey key: Key, mutation: (Value) -> Value) {
+        rwlock.writeLock()
+        if let value = container[key] {
+            container[key] = mutation(value)
         }
+        rwlock.unlock()
     }
 
     // MARK: Subscript
@@ -61,13 +75,13 @@ public final class ConcurrentDictionary<Key: Hashable, Value> {
             return value(forKey: key)
         }
         set {
-            containerAccessQueue.sync(flags: .barrier) {
-                guard let newValue = newValue else {
-                    self._remove(key)
-                    return
-                }
-                self._set(value: newValue, forKey: key)
+            rwlock.writeLock()
+            guard let newValue = newValue else {
+                _remove(key)
+                return
             }
+            _set(value: newValue, forKey: key)
+            rwlock.unlock()
         }
     }
 
@@ -80,9 +94,9 @@ public final class ConcurrentDictionary<Key: Hashable, Value> {
     @inline(__always)
     @discardableResult
     private func _remove(_ key: Key) -> Value? {
-        guard let index = self.container.index(forKey: key) else { return nil }
+        guard let index = container.index(forKey: key) else { return nil }
 
-        let tuple = self.container.remove(at: index)
+        let tuple = container.remove(at: index)
         return tuple.value
     }
 

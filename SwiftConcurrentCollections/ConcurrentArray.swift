@@ -5,64 +5,79 @@ import Foundation
 public final class ConcurrentArray<Element> {
 
     private var container: [Element] = []
-    private let containerAccessQueue = DispatchQueue(
-        label: "ConcurrentDictionary.containerAccessQueue",
-        qos: .default,
-        attributes: .concurrent
-    )
+    private let rwlock = RWLock()
 
     public var values: [Element] {
-        return containerAccessQueue.sync {
-            return Array(self.container)
-        }
+        let result: [Element]
+        rwlock.readLock()
+        result = container
+        rwlock.unlock()
+        return result
     }
 
     public var count: Int {
-        return containerAccessQueue.sync {
-            return self.container.count
-        }
+        let result: Int
+        rwlock.readLock()
+        result = container.count
+        rwlock.unlock()
+        return result
     }
 
+    // MARK: Lifecycle
     public init() {}
 
     public init(_ array: Array<Element>) {
         container = array
     }
 
+    // MARK: Public
     public func append(_ newElement: Element) {
-        containerAccessQueue.sync(flags: .barrier) {
-            self.container.append(newElement)
-        }
+        rwlock.writeLock()
+        container.append(newElement)
+        rwlock.unlock()
     }
 
     public func remove(at index: Int) -> Element {
-        return containerAccessQueue.sync(flags: .barrier) {
-            self.container.remove(at: index)
-        }
+        let result: Element
+        rwlock.writeLock()
+        result = container.remove(at: index)
+        rwlock.unlock()
+        return result
     }
 
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        containerAccessQueue.sync(flags: .barrier) {
-            self.container.removeAll(keepingCapacity: keepCapacity)
-        }
+        rwlock.writeLock()
+        container.removeAll(keepingCapacity: keepCapacity)
+        rwlock.unlock()
     }
 
     public func removeFirst(_ k: Int) {
-        containerAccessQueue.sync(flags: .barrier) {
-            self.container.removeFirst(k)
-        }
+        rwlock.writeLock()
+        container.removeFirst(k)
+        rwlock.unlock()
     }
 
     public func removeFirst() -> Element {
-        return containerAccessQueue.sync(flags: .barrier) {
-            self.container.removeFirst()
-        }
+        let result: Element
+        rwlock.writeLock()
+        result = container.removeFirst()
+        rwlock.unlock()
+        return result
     }
 
     public func value(at index: Int) -> Element {
-        return containerAccessQueue.sync {
-            return self.container[index]
-        }
+        let result: Element
+        rwlock.readLock()
+        result = container[index]
+        rwlock.unlock()
+        return result
+    }
+
+    public func mutateValue(at index: Int, mutation: (Element) -> Element) {
+        rwlock.writeLock()
+        let value = container[index]
+        container[index] = mutation(value)
+        rwlock.unlock()
     }
 
     // MARK: Subscript
@@ -71,16 +86,30 @@ public final class ConcurrentArray<Element> {
             return value(at: index)
         }
         set {
-            containerAccessQueue.sync(flags: .barrier) {
-                self._set(value: newValue, at: index)
+            rwlock.writeLock()
+            _set(value: newValue, at: index)
+            rwlock.unlock()
+        }
+    }
+
+    public subscript(safe index: Int) -> Element? {
+        get {
+            let result: Element?
+            rwlock.readLock()
+            if index >= container.count || index < 0 {
+                result = nil
+            } else {
+                result = container[index]
             }
+            rwlock.unlock()
+            return result
         }
     }
 
     // MARK: Private
     @inline(__always)
     private func _set(value: Element, at index: Int) {
-        self.container[index] = value
+        container[index] = value
     }
 
 }

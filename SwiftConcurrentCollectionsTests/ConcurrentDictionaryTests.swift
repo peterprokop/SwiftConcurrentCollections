@@ -4,6 +4,7 @@ import XCTest
 class ConcurrentDictionaryTests: XCTestCase {
 
     func testConcurrentReadingAndWriting() {
+        let startDate = Date().timeIntervalSince1970
         let key = "testKey"
         let concurrentDictionary = ConcurrentDictionary<String, Int>()
         // Note that if we change this to following:
@@ -40,6 +41,7 @@ class ConcurrentDictionaryTests: XCTestCase {
         }
 
         waitForExpectations(timeout: 10, handler: nil)
+        print("\(#function) took \(Date().timeIntervalSince1970 - startDate) seconds")
     }
 
     func testSingleThreadReadingAndWriting() {
@@ -53,6 +55,17 @@ class ConcurrentDictionaryTests: XCTestCase {
         concurrentDictionary[key] = value
 
         XCTAssertEqual(concurrentDictionary[key], value)
+    }
+
+    func testMutateValue() {
+        let concurrentDictionary = ConcurrentDictionary<String, Int>()
+        let key = "testKey"
+        let value = 999
+
+        concurrentDictionary[key] = 999
+        concurrentDictionary.mutateValue(forKey: key) { $0 * 2 }
+
+        XCTAssertEqual(concurrentDictionary[key], value * 2)
     }
 
 }

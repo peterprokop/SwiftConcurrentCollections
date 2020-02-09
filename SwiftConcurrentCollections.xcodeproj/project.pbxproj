@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F7CD5F723F051C00060F6BD /* RWLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7CD5F623F051C00060F6BD /* RWLock.swift */; };
+		2F7CD5F923F055610060F6BD /* GCDConcurrentDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7CD5F823F055610060F6BD /* GCDConcurrentDictionary.swift */; };
+		2F7CD5FB23F05C7D0060F6BD /* GCDConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7CD5FA23F05C7D0060F6BD /* GCDConcurrentArray.swift */; };
 		2F897EF723E8683000B522AF /* SwiftConcurrentCollections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F897EED23E8683000B522AF /* SwiftConcurrentCollections.framework */; };
 		2F897EFC23E8683000B522AF /* ConcurrentDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897EFB23E8683000B522AF /* ConcurrentDictionaryTests.swift */; };
 		2F897EFE23E8683000B522AF /* SwiftConcurrentCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F7CD5F623F051C00060F6BD /* RWLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWLock.swift; sourceTree = "<group>"; };
+		2F7CD5F823F055610060F6BD /* GCDConcurrentDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDConcurrentDictionary.swift; sourceTree = "<group>"; };
+		2F7CD5FA23F05C7D0060F6BD /* GCDConcurrentArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDConcurrentArray.swift; sourceTree = "<group>"; };
 		2F897EED23E8683000B522AF /* SwiftConcurrentCollections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftConcurrentCollections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftConcurrentCollections.h; sourceTree = "<group>"; };
 		2F897EF123E8683000B522AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,9 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */,
+				2F7CD5FA23F05C7D0060F6BD /* GCDConcurrentArray.swift */,
 				2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */,
+				2F7CD5F823F055610060F6BD /* GCDConcurrentDictionary.swift */,
 				2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */,
 				2F897EF123E8683000B522AF /* Info.plist */,
+				2F7CD5F623F051C00060F6BD /* RWLock.swift */,
 			);
 			path = SwiftConcurrentCollections;
 			sourceTree = "<group>";
@@ -206,8 +215,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F7CD5FB23F05C7D0060F6BD /* GCDConcurrentArray.swift in Sources */,
+				2F7CD5F723F051C00060F6BD /* RWLock.swift in Sources */,
 				2F897F0C23E86A8900B522AF /* ConcurrentArray.swift in Sources */,
 				2F897F0823E8692800B522AF /* ConcurrentDictionary.swift in Sources */,
+				2F7CD5F923F055610060F6BD /* GCDConcurrentDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

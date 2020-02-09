@@ -4,6 +4,7 @@ import XCTest
 class ConcurrentArrayTests: XCTestCase {
 
     func testConcurrentReadingAndWriting() {
+        let startDate = Date().timeIntervalSince1970
         let concurrentArray = ConcurrentArray<Int>()
         // Unsafe version:
         // var concurrentArray = Array<Int>()
@@ -45,6 +46,7 @@ class ConcurrentArrayTests: XCTestCase {
         }
 
         waitForExpectations(timeout: 10, handler: nil)
+        print("\(#function) took \(Date().timeIntervalSince1970 - startDate) seconds")
     }
 
     func testSingleThreadReadingAndWriting() {
@@ -60,4 +62,27 @@ class ConcurrentArrayTests: XCTestCase {
         XCTAssertEqual(concurrentArray[0], value)
     }
 
+    func testMutateValue() {
+        let array = ConcurrentArray<Int>()
+        let value = 999
+
+        array.append(value)
+
+        array.mutateValue(at: 0) { $0 * 2 }
+
+        XCTAssertEqual(array[0], value * 2)
+    }
+
+    func testSafeSubscript() {
+        let array = ConcurrentArray<Int>()
+        let value = 999
+
+        array.append(value)
+
+        XCTAssertEqual(array[safe: 0], value)
+        XCTAssertNil(array[safe: 1])
+        XCTAssertNil(array[safe: -999])
+        XCTAssertNil(array[safe: 999])
+
+    }
 }
