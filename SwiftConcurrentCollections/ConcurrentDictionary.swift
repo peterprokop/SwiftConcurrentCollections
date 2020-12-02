@@ -76,12 +76,14 @@ public final class ConcurrentDictionary<Key: Hashable, Value> {
         }
         set {
             rwlock.writeLock()
+            defer {
+                rwlock.unlock()
+            }
             guard let newValue = newValue else {
                 _remove(key)
                 return
             }
             _set(value: newValue, forKey: key)
-            rwlock.unlock()
         }
     }
 

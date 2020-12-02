@@ -68,5 +68,38 @@ class ConcurrentDictionaryTests: XCTestCase {
         XCTAssertEqual(concurrentDictionary[key], value * 2)
     }
 
+    func testAssigningNilDoesUnlock() {
+        let concurrentDictionary = ConcurrentDictionary<String, Int>()
+        let key = "testKey"
+        let value = 999
+
+        concurrentDictionary[key] = value
+
+        let queue = DispatchQueue(
+            label: "ThreadSafeDictionaryTests.queue",
+            qos: .userInteractive,
+            attributes: []
+        )
+
+        let expectationOne = expectation(description: "Assigning `nil` first time")
+        let expectationTwo = expectation(description: "Assigning `nil` second time")
+
+        queue.async {
+            concurrentDictionary[key] = nil
+            expectationOne.fulfill()
+        }
+
+        queue.sync {
+            concurrentDictionary[key] = nil
+            expectationTwo.fulfill()
+        }
+
+        waitForExpectations(timeout: 1, handler: nil)
+
+        concurrentDictionary[key] = value
+        XCTAssertEqual(concurrentDictionary[key], value)
+    }
+
 }
+
 
