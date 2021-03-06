@@ -16,6 +16,8 @@
 		2F897F0823E8692800B522AF /* ConcurrentDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0723E8692800B522AF /* ConcurrentDictionary.swift */; };
 		2F897F0C23E86A8900B522AF /* ConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */; };
 		2F897F0E23E8757400B522AF /* ConcurrentArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */; };
+		D2FD7F7925713C750014F8E8 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD7F7825713C750014F8E8 /* PriorityQueue.swift */; };
+		D2FD7F7D257147470014F8E8 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD7F7C257147470014F8E8 /* PriorityQueueTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		2F897F0B23E86A8900B522AF /* ConcurrentArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArray.swift; sourceTree = "<group>"; };
 		2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArrayTests.swift; sourceTree = "<group>"; };
 		2F897F0F23E87A1800B522AF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D2FD7F7825713C750014F8E8 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		D2FD7F7C257147470014F8E8 /* PriorityQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueueTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				2F897EF023E8683000B522AF /* SwiftConcurrentCollections.h */,
 				2F897EF123E8683000B522AF /* Info.plist */,
 				2F7CD5F623F051C00060F6BD /* RWLock.swift */,
+				D2FD7F7825713C750014F8E8 /* PriorityQueue.swift */,
 			);
 			path = SwiftConcurrentCollections;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			children = (
 				2F897EFB23E8683000B522AF /* ConcurrentDictionaryTests.swift */,
 				2F897F0D23E8757400B522AF /* ConcurrentArrayTests.swift */,
+				D2FD7F7C257147470014F8E8 /* PriorityQueueTests.swift */,
 				2F897EFD23E8683000B522AF /* Info.plist */,
 			);
 			path = SwiftConcurrentCollectionsTests;
@@ -220,6 +226,7 @@
 				2F897F0C23E86A8900B522AF /* ConcurrentArray.swift in Sources */,
 				2F897F0823E8692800B522AF /* ConcurrentDictionary.swift in Sources */,
 				2F7CD5F923F055610060F6BD /* GCDConcurrentDictionary.swift in Sources */,
+				D2FD7F7925713C750014F8E8 /* PriorityQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +236,7 @@
 			files = (
 				2F897F0E23E8757400B522AF /* ConcurrentArrayTests.swift in Sources */,
 				2F897EFC23E8683000B522AF /* ConcurrentDictionaryTests.swift in Sources */,
+				D2FD7F7D257147470014F8E8 /* PriorityQueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
