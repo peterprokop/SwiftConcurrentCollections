@@ -10,11 +10,11 @@ import Foundation
 
 private let defaultCapacity = 16
 
-public struct PriorityQueue<V> {
-    public typealias ComplexComparator = (V, V) -> ComparisonResult
-    public typealias Comparator = (V, V) -> Bool
+public struct PriorityQueue<Element> {
+    public typealias ComplexComparator = (Element, Element) -> ComparisonResult
+    public typealias Comparator = (Element, Element) -> Bool
 
-    private var container: [V]
+    private var container: [Element]
     private var heapSize = 0
     private let comparator: Comparator
 
@@ -34,7 +34,7 @@ public struct PriorityQueue<V> {
     public init(capacity: Int, comparator: @escaping Comparator) {
         self.comparator = comparator
 
-        container = Array<V>()
+        container = Array<Element>()
         container.reserveCapacity(capacity)
     }
 
@@ -45,7 +45,7 @@ public struct PriorityQueue<V> {
         self.init(capacity: defaultCapacity, comparator: comparator)
     }
 
-    mutating public func insert(_ value: V) {
+    mutating public func insert(_ value: Element) {
         if heapSize == container.capacity {
             let reserveSize = container.count > 0 ? container.count : defaultCapacity
             container.reserveCapacity(container.count + reserveSize)
@@ -64,7 +64,7 @@ public struct PriorityQueue<V> {
     }
 
     /// Remove top element from the queue
-    mutating public func pop() -> V {
+    mutating public func pop() -> Element {
         if heapSize <= 0 {
             fatalError("Fatal error: trying to pop from an empty PriorityQueue")
         }
@@ -83,7 +83,7 @@ public struct PriorityQueue<V> {
     }
 
     /// Get top element from the queue
-    public func peek() -> V {
+    public func peek() -> Element {
         if heapSize <= 0 {
             fatalError("Fatal error: trying to peek into an empty PriorityQueue")
         }

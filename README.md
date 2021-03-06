@@ -44,7 +44,7 @@ if index < concurrentArray.count {
 ```
 
 ## Priority queue
-**SCC** provides classical (non-concurrent) priority queue
+**SCC** provides both classical and concurrent priority queues
 
 ```swift
 var priorityQueue = PriorityQueue<Int>(<)
@@ -64,3 +64,4 @@ while priorityQueue.count > 0 {
 
 As you can see `PriorityQueue<Int>(<)` constructs min-queue, with `PriorityQueue<Int>(>)` you can get max-queue.
 If you need to reserve capacity right away, use `PriorityQueue<Int>(capacity: 1024, comparator: <)`.
+`ConcurrentPriorityQueue<Int>(<)` creates a thread-safe version, with a very similar interface.
