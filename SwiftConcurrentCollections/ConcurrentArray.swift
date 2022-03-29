@@ -37,6 +37,7 @@ public final class ConcurrentArray<Element> {
         rwlock.unlock()
     }
 
+    @discardableResult
     public func remove(at index: Int) -> Element {
         let result: Element
         rwlock.writeLock()
@@ -57,6 +58,7 @@ public final class ConcurrentArray<Element> {
         rwlock.unlock()
     }
 
+    @discardableResult
     public func removeFirst() -> Element {
         let result: Element
         rwlock.writeLock()
