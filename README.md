@@ -6,6 +6,18 @@ Swift Concurrent Collections (or **SCC**) is a library providing concurrent (thr
 
 # Installation
 
+## Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+
+Once you have your Swift package set up, adding SwiftConcurrentCollections as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```source-swift
+dependencies: [
+    .package(url: "https://github.com/peterprokop/SwiftConcurrentCollections.git", .branch("master"))
+]
+```
+
 ## Carthage
 In your Xcode project folder do:
 - `echo "github \"peterprokop/SwiftConcurrentCollections\" ~> 1.3.0" >> Cartfile` (or use `nano`)
